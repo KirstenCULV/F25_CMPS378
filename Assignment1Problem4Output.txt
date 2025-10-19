@@ -1,0 +1,16 @@
+****** Welcome to LADWP Utility Bill Calculator ******
+Enter your name: Jessica
+Enter electricity usage in kWh: 375
+Enter water usage in HCF: 22
+=========== LADWP MONTHLY BILL ===========
+Customer Name: Jessica
+Electricity Usage: 375 kWh
+Rate Applied: $0.17 per kWh
+Electricity Charge: $63.75
+Water Usage: 22 HCF
+Rate Applied: $3.10 per HCF
+Water Charge: $68.20
+------------------------------------------
+Total Amount Due: $131.95
+==========================================
+Thank you for using LADWP!

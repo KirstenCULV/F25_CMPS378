@@ -1,0 +1,16 @@
+****** Welcome to AT&T Fiber Internet Billing System ******
+Enter your name: Ashley
+Select internet plan speed (300 / 500 / 1000 / 2000 / 5000 Mbps): 2000
+Would you like to add a static IP? (Y/N): Y
+=========== AT&T FIBER BILLING SUMMARY ===========
+Customer Name: Ashley
+Plan Speed: 2000 Mbps
+Base Price: $110.00
+Static IP: $15.00
+--------------------------------------------
+Subtotal: $125.00
+Tax (9.5%): $11.88
+--------------------------------------------
+Total Due: $136.88
+==================================================
+Thank you for choosing AT&T Fiber!

@@ -1,0 +1,27 @@
+****** Welcome to the Road Trip Budget Estimator ******
+
+Enter your name: Jason
+How many days will your trip be? 4
+How many miles will you drive in total? 850
+What is your car's MPG? 25
+What is the average gas price per gallon? 4.89
+What is your nightly hotel cost? 129.99
+What is your daily food budget? 50
+
+=========== ROAD TRIP BUDGET SUMMARY ===========
+Name:                 Jason
+Trip Duration:        4 days
+Total Miles:          850 miles
+Fuel Efficiency:      25 MPG
+Gas Price:            $4.89
+Hotel Cost/Night:     $129.99
+Daily Food Budget:    $50.00
+-----------------------------------------------
+Gas Needed:           34.00 gallons
+Estimated Gas Cost:   $166.26
+Estimated Hotel Cost: $389.97
+Estimated Food Cost:  $200.00
+-----------------------------------------------
+Estimated Trip Total: $756.23
+===============================================
+Thanks for using the Road Trip Budget Estimator!
