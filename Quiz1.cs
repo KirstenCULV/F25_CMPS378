@@ -13,11 +13,11 @@ namespace Quiz1
         static void Main(String[] args)
         {
             // intialize variables
-            string name, comboOrdered, drinkIncluded = " ";
+            string name, comboOrdered, drinkIncluded, freeDessert = " ";
             char packageCode, drink = ' ';
             int comboNum = 0;
             double taxRate = 9.5D;
-            double itemPrice, perItem, subtotal = 0D;
+            double itemPrice, perItem, subtotal, dessertDifference, taxAmount, total = 0D;
 
             // menu display
             Console.WriteLine("*****Welcome to Tacos La Villa POS System***** \n");
@@ -78,10 +78,18 @@ namespace Quiz1
             }
 
             subtotal = (itemPrice * comboNum);
-            
+            taxAmount = ((subtotal * 9.5) / 100);
+            total = (taxAmount + subtotal);
+
             if (subtotal > 20.00)
             {
-                
+                freeDessert = "Congratulaions! You get a free dessert!";
+            }
+            
+            else
+            {
+                dessertDifference = (20.00 - subtotal);
+                freeDessert = "Only " + dessertDifference + " more to earn a free dessert!";
             }
 
             // output
@@ -93,10 +101,10 @@ namespace Quiz1
             Console.WriteLine("-------------------");
             Console.WriteLine("Price Per Item: $" + perItem);
             Console.WriteLine("Subtotal: $" + subtotal);
-            Console.WriteLine("Tax(9.5%): ");
+            Console.WriteLine("Tax(9.5%): $" + taxAmount);
             Console.WriteLine("-------------------");
-            Console.WriteLine("Total: ");
-            Console.WriteLine("Free Dessert?");
+            Console.WriteLine("Total: $" + total);
+            Console.WriteLine(freeDessert);
             Console.WriteLine("===================");
             Console.WriteLine("Thank you for supporting Tacos La Villa!");
 
