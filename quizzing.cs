@@ -11,11 +11,7 @@ namespace Quiz1
     {
         static void Main(String[] args)
         {
-            // intialize variables
-            string name = " ";
-            char packageCode, drink = ' ';
-            int comboNum = 0;
-            double taxRate = 9.5D;
+
 
             // menu display
             Console.WriteLine("*****Welcome to Tacos La Villa POS System***** \n");
@@ -27,23 +23,19 @@ namespace Quiz1
 
             // user input
             Console.WriteLine("Please enter your name: ");
-            name = Console.ReadLine;
             Console.WriteLine("Please enter your package code: ");
-            packageCode = Convert.ToChar(Console.ReadLine);
             Console.WriteLine("Would you like to add a drink?(Y/N): ");
-            drink = Convert.ToChar(Console.ReadLine);
             Console.WriteLine("How many combos would you like?: ");
-            comboNum = Convert.ToInt32(Console.ReadLine);
 
             // process input
 
 
             // output
             Console.WriteLine("=======Tacos La Villa Receipt=======");
-            Console.WriteLine("Customer Name: " + name);
+            Console.WriteLine("Customer Name: ");
             Console.WriteLine("Combo Ordered: ");
             Console.WriteLine("Drink Included: ");
-            Console.WriteLine("Quantity: " + comboNum);
+            Console.WriteLine("Quantity: ");
             Console.WriteLine("-------------------");
             Console.WriteLine("Price Per Item: ");
             Console.WriteLine("Subtotal: ");
