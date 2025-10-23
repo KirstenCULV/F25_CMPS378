@@ -1,11 +1,4 @@
 // Road Trip Budget Estimator
-// Problem 3 - CMPS 378: C# Programming (Fall 2025)
-// Author: Kaya Catano
-// Date: 2025-10-18
-// Description:
-//   Console app that estimates the total cost of a multi-day road trip.
-//   Prompts the user for trip details, performs calculations, and prints
-//   a nicely formatted summary as specified in the assignment.
 
 using System;
 using System.Globalization;
