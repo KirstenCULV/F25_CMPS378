@@ -4,6 +4,7 @@
 
 using System;
 using System.Globalization;
+using System.Runtime.CompilerServices;
 
 namespace Quiz1
 {
@@ -12,10 +13,11 @@ namespace Quiz1
         static void Main(String[] args)
         {
             // intialize variables
-            string name = " ";
+            string name, comboOrdered, drinkIncluded = " ";
             char packageCode, drink = ' ';
             int comboNum = 0;
             double taxRate = 9.5D;
+            double itemPrice, perItem, subtotal = 0D;
 
             // menu display
             Console.WriteLine("*****Welcome to Tacos La Villa POS System***** \n");
@@ -36,17 +38,61 @@ namespace Quiz1
             comboNum = Convert.ToInt32(Console.ReadLine);
 
             // process input
+            if (drink = 'Y' || 'y')
+            {
+                itemPrice = 2.00;
+                drinkIncluded = "Yes";
+            }
 
+            else
+            {
+                drinkIncluded = "No";
+            }
+
+            if (comboNum = 'A' || 'a')
+            {
+                comboOrdered = "3 Tacos Combo";
+                perItem = 7.00;
+                itemPrice = (itemPrice + perItem);
+            }
+
+            if (comboNum = 'B' || 'b')
+            {
+                comboOrdered = "Burrito Meal";
+                perItem = 8.50;
+                itemPrice = (itemPrice + perItem);
+            }
+
+            if (comboNum = 'C' || 'c')
+            {
+                comboOrdered = "Quesadilla Special";
+                perItem = 6.00;
+                itemPrice = (itemPrice + perItem);
+            }
+
+            if (comboNum = 'D' || 'd')
+            {
+                comboOrdered = "Loaded Nachos";
+                perItem = 5.75;
+                itemPrice = (itemPrice + perItem);
+            }
+
+            subtotal = (itemPrice * comboNum);
+            
+            if (subtotal > 20.00)
+            {
+                
+            }
 
             // output
             Console.WriteLine("=======Tacos La Villa Receipt=======");
             Console.WriteLine("Customer Name: " + name);
-            Console.WriteLine("Combo Ordered: ");
-            Console.WriteLine("Drink Included: ");
+            Console.WriteLine("Combo Ordered: " + comboOrdered);
+            Console.WriteLine("Drink Included: " + drinkIncluded);
             Console.WriteLine("Quantity: " + comboNum);
             Console.WriteLine("-------------------");
-            Console.WriteLine("Price Per Item: ");
-            Console.WriteLine("Subtotal: ");
+            Console.WriteLine("Price Per Item: $" + perItem);
+            Console.WriteLine("Subtotal: $" + subtotal);
             Console.WriteLine("Tax(9.5%): ");
             Console.WriteLine("-------------------");
             Console.WriteLine("Total: ");
