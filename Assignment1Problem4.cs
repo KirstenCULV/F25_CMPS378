@@ -1,7 +1,4 @@
-// CMPS 378: C# Programming Fall 2025
-// Problem 4: LADWP Utility Bill Calculator (Strict Format)
-// Author: Kaya Catano
-// Date: 2025-10-18
+// LADWP Utility Bill Calculator
 
 using System;
 using System.Globalization;
@@ -16,6 +13,7 @@ namespace Assignment1Problem4Strict
 
             Console.WriteLine("****** Welcome to LADWP Utility Bill Calculator ******");
 
+            // user input
             Console.Write("Enter your name: ");
             string name = Console.ReadLine();
 
@@ -43,6 +41,7 @@ namespace Assignment1Problem4Strict
             double waterCharge = hcf * waterRate;
             double total = elecCharge + waterCharge;
 
+            // output
             Console.WriteLine("=========== LADWP MONTHLY BILL ===========");
             Console.WriteLine($"Customer Name: {name}");
             Console.WriteLine($"Electricity Usage: {kwh.ToString("0", culture)} kWh");
