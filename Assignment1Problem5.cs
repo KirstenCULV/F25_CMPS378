@@ -1,7 +1,4 @@
-// CMPS 378: C# Programming Fall 2025
-// Problem 5: AT&T Fiber Internet Bill Calculator (Strict Format)
-// Author: Kaya Catano
-// Date: 2025-10-18
+// AT&T Fiber Internet Bill Calculator
 
 using System;
 using System.Globalization;
@@ -16,6 +13,7 @@ namespace Assignment1Problem5Strict
 
             Console.WriteLine("****** Welcome to AT&T Fiber Internet Billing System ******");
 
+            // user input
             Console.Write("Enter your name: ");
             string name = Console.ReadLine();
 
@@ -51,6 +49,7 @@ namespace Assignment1Problem5Strict
             double tax = Math.Round(subtotal * 0.095, 2, MidpointRounding.AwayFromZero);
             double total = subtotal + tax;
 
+            // output
             Console.WriteLine("=========== AT&T FIBER BILLING SUMMARY ===========");
             Console.WriteLine($"Customer Name: {name}");
             Console.WriteLine($"Plan Speed: {planSpeed} Mbps");
