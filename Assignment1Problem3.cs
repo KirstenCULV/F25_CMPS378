@@ -14,7 +14,7 @@ namespace Assignment1Problem3
 
             Console.WriteLine("****** Welcome to the Road Trip Budget Estimator ******");
 
-            // 1) INPUTS
+            //user input
             Console.Write("Enter your name: ");
             string name = Console.ReadLine();
 
@@ -36,8 +36,8 @@ namespace Assignment1Problem3
             Console.Write("What is your daily food budget? ");
             double dailyFood = Convert.ToDouble(Console.ReadLine());
 
-            // 2) CALCULATIONS
-            // Guard against division by zero for MPG
+            // process input
+            // guard against division by zero for MPG
             double gasNeeded = mpg != 0 ? (totalMiles / mpg) : 0.0;
             double gasCost = gasNeeded * gasPrice;
 
@@ -49,7 +49,7 @@ namespace Assignment1Problem3
 
             double totalCost = gasCost + hotelCost + foodCost;
 
-            // 3) OUTPUT SUMMARY
+            // output
             Console.WriteLine();
             Console.WriteLine("=========== ROAD TRIP BUDGET SUMMARY ===========");
             Console.WriteLine($"Name:                 {name}");
