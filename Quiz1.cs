@@ -3,8 +3,6 @@
 // whether they want a drink, input quantity, and receive a detailed receipt.
 
 using System;
-using System.Globalization;
-using System.Runtime.CompilerServices;
 
 namespace Quiz1
 {
