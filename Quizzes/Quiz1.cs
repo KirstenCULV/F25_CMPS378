@@ -37,60 +37,60 @@ namespace Quiz1
             // process input
             if (drink == 'Y' || drink == 'y')
             {
-                itemPrice = 2.00D;
 				perItem = 2.00D;
                 drinkIncluded = "Yes";
             }
 
             else
             {
-                drinkIncluded = "No";
 				itemPrice = 0.00D;
-				perItem = 0.00D;
+				perItem = 0.00D; 
+				drinkIncluded = "No";
             }
 
             if (packageCode == 'A' || packageCode == 'a')
             {
                 comboOrdered = "3 Tacos Combo";
                 perItem = (perItem + 7.00D);
-                itemPrice = (itemPrice + perItem);
-				double roundedValue = Math.Round(itemPrice, 2);
+                itemPrice = (perItem + 0.00D);
             }
 
-            if (packageCode == 'B' || packageCode == 'b')
+            else if (packageCode == 'B' || packageCode == 'b')
             {
                 comboOrdered = "Burrito Meal";
                 perItem = (perItem + 8.50D);
-                itemPrice = (itemPrice + perItem);
+                itemPrice = (perItem + 0.00D);
             }
 
-            if (packageCode == 'C' || packageCode == 'c')
+            else if (packageCode == 'C' || packageCode == 'c')
             {
                 comboOrdered = "Quesadilla Special";
                 perItem = (perItem + 6.00D);
-                itemPrice = (itemPrice + perItem);
+                itemPrice = (perItem + 0.00D);
             }
 
-            if (packageCode == 'D' || packageCode == 'd')
+            else if (packageCode == 'D' || packageCode == 'd')
             {
                 comboOrdered = "Loaded Nachos";
                 perItem = (perItem + 5.75D);
-                itemPrice = (itemPrice + perItem);
+                itemPrice = (perItem + 0.00D);
             }
 			
 			else
 			{
 				comboOrdered = "Invalid Selection";
 				perItem = 0.00D;
+				itemPrice = 0.00D;
 			}
 
             subtotal = (itemPrice * comboNum);
-			double roundedValue = Math.Round(subtotal, 2);
+			Math.Round(subtotal, 3);
 			
             taxAmount = ((subtotal * taxRate) / 100D);
-			double roundedvalue = Math.Round(taxAmount, 2);
+			Math.Round(taxAmount, 2);
 			
             total = (taxAmount + subtotal);
+			Math.Round(total, 2);
 
             if (subtotal > 20.00D)
             {
