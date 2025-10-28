@@ -1,1 +1,58 @@
-//stuff
+// Real-World Budgeting App
+/* This program helps users track their monthly expenses. 
+The user will enter an unlimited number of expenses, one at a
+time, until they enter -1 to stop. Each expense will include
+the category (e.g., groceries, rent, utilities) and amount. */
+
+using System;
+
+namespace Assignment2Problem2
+{
+    class Program
+    {
+        static void Main(String[] args)
+        {
+            // intialize variables
+            string name = " ";
+			string[] expenseCategory = new string[25];
+			double[] categoryAmount = new double[25];
+            double totalEntries, AvgExpense, amountPlaceHolder = 0D;
+			double totalSpent = 0D;
+			int i = 0;
+
+            // display
+            Console.WriteLine("********Welcome to Monthly Expense Tracker******** \n");
+
+            // user input
+            Console.WriteLine("Please enter your name: ");
+            name = Console.ReadLine();
+
+// loop
+			for(double expenseAmountloop = 0; expenseAmountloop > -1; i++) {
+				
+				Console.WriteLine("Enter Expense Category: ");
+				expenseCategory[i] = Console.ReadLine();
+				Console.WriteLine("Enter Amount: \n");	
+				amountPlaceHolder = Convert.ToDouble(Console.ReadLine());
+				expenseAmountloop = amountPlaceHolder;
+				categoryAmount[i] = amountPlaceHolder;
+				totalSpent = (totalSpent + amountPlaceHolder);
+			}
+
+//calculatons
+			totalEntries = (i);
+			AvgExpense = (totalSpent/totalEntries);
+			Math.Round(AvgExpense, 2);
+
+            // output
+            Console.WriteLine("=======Monthly Expense Summary=======");
+            Console.WriteLine("Name: " + name);
+            Console.WriteLine("Total Entries: " + totalEntries);
+            Console.WriteLine("Total Amount Spent: " + totalSpent);
+            Console.WriteLine("Average Expense: " + AvgExpense);
+            Console.WriteLine("===================");
+            Console.WriteLine("Thank you for using the Monthly Expense Tracker!");
+
+        }
+    }
+}
