@@ -17,7 +17,7 @@ namespace Assignment2Problem2
 			string[] expenseCategory = new string[25];
 			double[] categoryAmount = new double[25];
             double totalEntries, AvgExpense, amountPlaceHolder = 0D;
-			double totalSpent = 0D;
+			double totalSpent = 1D;
 			int i = 0;
 
             // display
@@ -26,21 +26,22 @@ namespace Assignment2Problem2
             // user input
             Console.WriteLine("Please enter your name: ");
             name = Console.ReadLine();
-
-// loop
+			
+			// loop
 			for(double expenseAmountloop = 0; expenseAmountloop > -1; i++) {
 				
 				Console.WriteLine("Enter Expense Category: ");
 				expenseCategory[i] = Console.ReadLine();
-				Console.WriteLine("Enter Amount: \n");	
+				Console.WriteLine("Enter Amount (Input -1 to stop): ");	
 				amountPlaceHolder = Convert.ToDouble(Console.ReadLine());
 				expenseAmountloop = amountPlaceHolder;
 				categoryAmount[i] = amountPlaceHolder;
 				totalSpent = (totalSpent + amountPlaceHolder);
+				Console.WriteLine(" ");
 			}
-
-//calculatons
-			totalEntries = (i);
+			
+			// calculations
+			totalEntries = (i - 1);
 			AvgExpense = (totalSpent/totalEntries);
 			Math.Round(AvgExpense, 2);
 
