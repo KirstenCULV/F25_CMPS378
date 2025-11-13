@@ -2,7 +2,8 @@
 Created: 10/16/25 11:00 a.m.
 Update 1: "Created file" Kirsten on 10/16/25 11:15 a.m.
 Update 2: Kirsten on 11/12/25 8:24 p.m.
-Last updated by: Kirsten on 11/12/25 8:24 p.m.
+Update 3: "Added text outputs" Kirsten on 11/12/25 9:01 p.m.
+Last updated by: Kirsten on 11/12/25 9:01 p.m.
 */
 
 using System;
@@ -15,9 +16,11 @@ public class Program
 		string userName = " ";
 		int dailycalorieGoal = 0;
 		int dailywaterGoal = 0;
+		char menuSelection = ' ';
 		
 		// USER SETUP, some loop exception would be necessary here to ensure
 		// that the user setup only runs once.
+		
 		Console.WriteLine("~~~~~~~~~~ Welcome to K&K Calorie Tracker ~~~~~~~~~~ \n");
 		Console.WriteLine("Please enter your name: ");
 		userName = Console.ReadLine();
@@ -27,9 +30,62 @@ public class Program
 		dailywaterGoal = Convert.ToInt16(Console.ReadLine());
 		
 		
-		// MAIN MENU
+		// MAIN MENU, loop stuff here to allow menu navigation
 		
+		Console.WriteLine("~~~~~~~~~~ K&K Calorie Tracker ~~~~~~~~~~ \n");
+		Console.WriteLine("Welcome, " + userName);
+		Console.WriteLine("Today's Report [R]");
+		Console.WriteLine("Calories [C]");
+		Console.WriteLine("Water [W]");
+		Console.WriteLine("Settings [S] \n");
+		Console.WriteLine("Where would you like to go?");
+		menuSelection = Convert.ToChar(Console.ReadLine());
 		
+		// whichever characters takes user to different part of the loop
+		
+		// TODAY'S REPORT
+		Console.WriteLine("~~~~~~~~~~ Today's Report ~~~~~~~~~~ \n");
+		Console.WriteLine("Breakfast + total breakfast calories");
+		
+		Console.WriteLine("Lunch + total lunch calories");
+		
+		Console.WriteLine("Dinner + total dinner calories");
+		
+		Console.WriteLine("Snacks + total snack calories");
+		
+		Console.WriteLine("Calories = total calorie intake");
+		Console.WriteLine("Water = total water intake");
+		
+		Console.WriteLine("Back to Main Menu [M]");
+		
+		// CALORIES
+		Console.WriteLine("~~~~~~~~~~ Calories ~~~~~~~~~~ \n");
+		
+		Console.WriteLine("Add Calories [A]");
+		Console.WriteLine("Delete Calories [D]");
+		Console.WriteLine("Main Menu [M]");
+		Console.WriteLine("What would you like to do?");
+		
+		//whichever character takes user to different part of the loop
+		
+		// ADD CALORIES
+		Console.WriteLine("~~~~~~~~~~ Add Calories ~~~~~~~~~~ \n");
+		 
+		Console.WriteLine("Breakfast [B]");
+		Console.WriteLine("Lunch [L]");
+		Console.WriteLine("Dinner [D]");
+		Console.WriteLine("Snacks [S]");
+		Console.WriteLine("Back to Calories [C]");
+		Console.WriteLine("Which category would you like to add to?");
+		
+		// whichever character takes user to different part of the loop
+						  
+		
+		// WATER
+		Console.WriteLine("~~~~~~~~~~ Water ~~~~~~~~~~ \n");
+		
+		// SETTINGS
+		Console.WriteLine("~~~~~~~~~~ Settings ~~~~~~~~~~ \n");
 		
 		
 	}
