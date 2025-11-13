@@ -1,0 +1,23 @@
+****** Welcome to Freelance Project Income Tracker ******
+Enter your name: kaya
+How many projects would you like to enter? 2
+
+Project #1:
+Enter project name: C# programming
+Enter hours worked: 4
+Enter hourly rate: 19.50
+
+Project #2:
+Enter project name: Comp Sci Class
+Enter hours worked: 8
+Enter hourly rate: 17.70
+
+========== FREELANCE INCOME SUMMARY ==========
+Freelancer Name:         kaya
+Projects Logged:         2
+
+Total Income:            $219.60
+Average Project Income:  $109.80
+Highest-Earning Project: Comp Sci Class ($141.60)
+==============================================
+Thank you for using the Income Tracker!
