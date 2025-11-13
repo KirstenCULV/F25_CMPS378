@@ -1,6 +1,5 @@
 // CMPS 378: C# Programming Fall 2025
 //Assignment 2 Problem 1: Freelance Project Income Tracker
-// Author: Kaya Catano
 
 using System;
 using System.Globalization;
@@ -59,4 +58,5 @@ namespace Assignment2Problem1
             Console.WriteLine("Thank you for using the Income Tracker!");
         }
     }
+
 }
