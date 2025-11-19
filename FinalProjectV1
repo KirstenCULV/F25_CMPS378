@@ -3,7 +3,8 @@ Created: 10/16/25 11:00 a.m.
 Update 1: "Created file" Kirsten on 10/16/25 11:15 a.m.
 Update 2: Kirsten on 11/12/25 8:24 p.m.
 Update 3: "Added text outputs" Kirsten on 11/12/25 9:01 p.m.
-Last updated by: Kirsten on 11/12/25 9:01 p.m.
+Update 4: "Added text outputs" Kirsten on 11/18/25 8:52 p.m.
+Last updated by: Kirsten on 11/18/25 8:52 p.m.
 */
 
 using System;
@@ -79,13 +80,118 @@ public class Program
 		Console.WriteLine("Which category would you like to add to?");
 		
 		// whichever character takes user to different part of the loop
-						  
+				
+		// BREAKFAST
+		Console.WriteLine("~~~~~~~~~~ Breakfast ~~~~~~~~~~ \n");
+		
+		Console.WriteLine("What item would you like to add?: ");
+		
+		Console.WriteLine("How many calories is this item?: ");
+		
+		Console.WriteLine("Add another item? [Y/N]: ");
+		// loop back to breafast if yes, back to add calories if no
+		
+		// LUNCH
+		Console.WriteLine("~~~~~~~~~~ Lunch ~~~~~~~~~~ \n");
+		
+		Console.WriteLine("What item would you like to add?: ");
+		
+		Console.WriteLine("How many calories is this item?: ");
+		
+		Console.WriteLine("Add another item? [Y/N]: ");
+		// loop back to lunch if yes, back to add calories if no
+		
+		// DINNER
+		Console.WriteLine("~~~~~~~~~~ DINNER ~~~~~~~~~~ \n");
+		
+		Console.WriteLine("What item would you like to add?: ");
+		
+		Console.WriteLine("How many calories is this item?: ");
+		
+		Console.WriteLine("Add another item? [Y/N]: ");
+		// loop back to dinner if yes, back to add calories if no
+		
+		// SNACKS
+		Console.WriteLine("~~~~~~~~~~ Snacks ~~~~~~~~~~ \n");
+		
+		Console.WriteLine("What item would you like to add?: ");
+		
+		Console.WriteLine("How many calories is this item?: ");
+		
+		Console.WriteLine("Add another item? [Y/N]: ");
+		// loop back to snacks if yes, back to add calories if no
+		
+		// DELETE CALORIES
+		Console.WriteLine("~~~~~~~~~~ Delete Calories ~~~~~~~~~~ \n");
+		
+		Console.WriteLine("Breakfast [B]");
+		Console.WriteLine("Lunch [L]");
+		Console.WriteLine("Dinner [D]");
+		Console.WriteLine("Snacks [S]");
+		Console.WriteLine("Back to Calories [C]");
+		Console.WriteLine("Which category would you like to delete from?");
+		
+		// whichever character takes user to different part of the loop
+		
+		// BREAKFAST
+		Console.WriteLine("~~~~~~~~~~ Breakfast ~~~~~~~~~~ \n");
+		
+		Console.WriteLine("What item would you like to delete?: ");
+		
+		Console.WriteLine("Delete another item? [Y/N]: ");
+		// loop back to breafast if yes, back to delete calories if no
+		
+		// LUNCH
+		Console.WriteLine("~~~~~~~~~~ Lunch ~~~~~~~~~~ \n");
+		
+		Console.WriteLine("What item would you like to delete?: ");
+
+		Console.WriteLine("Delete another item? [Y/N]: ");
+		// loop back to lunch if yes, back to delete calories if no
+		
+		// DINNER
+		Console.WriteLine("~~~~~~~~~~ DINNER ~~~~~~~~~~ \n");
+		
+		Console.WriteLine("What item would you like to delete?: ");
+		
+		Console.WriteLine("Delete another item? [Y/N]: ");
+		// loop back to dinner if yes, back to delete calories if no
+		
+		// SNACKS
+		Console.WriteLine("~~~~~~~~~~ Snacks ~~~~~~~~~~ \n");
+		
+		Console.WriteLine("What item would you like to delete?: ");
+		
+		Console.WriteLine("Delete another item? [Y/N]: ");
+		// loop back to snacks if yes, back to delete calories if no
 		
 		// WATER
 		Console.WriteLine("~~~~~~~~~~ Water ~~~~~~~~~~ \n");
 		
+		Console.WriteLine("Add Water [A]");
+		Console.WriteLine("Delete Water [D]");
+		Console.WriteLine("Main Menu [M]");
+		
+		// whichever character takes user to different part of the loop
+		
+		// ADD WATER
+		Console.WriteLine("~~~~~~~~~~ Add Water ~~~~~~~~~~ \n");
+		
+		Console.WriteLine("How many ounces?: ");
+		
+		//automatically go back to water
+		
+		// DELETE WATER
+		Console.WriteLine("~~~~~~~~~~ Delete Water ~~~~~~~~~~ \n");
+		
+		Console.WriteLine("How many ounces?: ");
+		
+		//automatically go back to water
+		
 		// SETTINGS
 		Console.WriteLine("~~~~~~~~~~ Settings ~~~~~~~~~~ \n");
+		
+		
 		
 		
 	}
