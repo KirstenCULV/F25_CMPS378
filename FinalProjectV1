@@ -5,7 +5,8 @@ Update 2: Kirsten on 11/12/25 8:24 p.m.
 Update 3: "Added text outputs" Kirsten on 11/12/25 9:01 p.m.
 Update 4: "Added text outputs" Kirsten on 11/18/25 8:52 p.m.
 Update 5: "Completed text outputs, added mathematical operations" Kirsten on 11/18/25 9:14 p.m.
-Last updated by: Kirsten on 11/18/25 9:14 p.m.
+Update 6: "Completed menu navigation" Kirsten on 11/19/25 10:13 p.m.
+Last updated by: Kirsten on 11/19/25 10:13 p.m.
 */
 
 using System;
@@ -19,7 +20,7 @@ public class Program
 		int dailycalorieGoal = 0;
 		int dailywaterGoal, totalwaterIntake = 0;
 		int addWater, deleteWater = 0;
-		char menuSelection = ' ';
+		char menuSelection, doMore = ' ';
 		
 		// USER SETUP, some loop exception would be necessary here to ensure
 		// that the user setup only runs once.
@@ -27,13 +28,15 @@ public class Program
 		Console.WriteLine("~~~~~~~~~~ Welcome to K&K Calorie Tracker ~~~~~~~~~~ \n");
 		Console.WriteLine("Please enter your name: ");
 		userName = Console.ReadLine();
-		Console.WriteLine("What is your daily caloric intake goal?: ");
+		Console.WriteLine("What is your daily calorie intake goal?: ");
 		dailycalorieGoal = Convert.ToInt16(Console.ReadLine());
 		Console.WriteLine("What is your daily water intake goal in ounces?: ");
 		dailywaterGoal = Convert.ToInt16(Console.ReadLine());
 		
 		
 		// MAIN MENU, loop stuff here to allow menu navigation
+		
+		MAINMENU:
 		
 		Console.WriteLine("~~~~~~~~~~ K&K Calorie Tracker ~~~~~~~~~~ \n");
 		Console.WriteLine("Welcome, " + userName);
@@ -46,7 +49,22 @@ public class Program
 		
 		// whichever characters takes user to different part of the loop
 		
+		if (menuSelection == 'R')
+		{ goto TODAYSREPORT; }
+		
+		if (menuSelection == 'C')
+		{ goto CALORIES; }
+		
+		if (menuSelection == 'W')
+		{ goto WATER; }
+		
+		if (menuSelection == 'S')
+		{ goto SETTINGS; }
+		
 		// TODAY'S REPORT
+		
+		TODAYSREPORT:
+		
 		Console.WriteLine("~~~~~~~~~~ Today's Report ~~~~~~~~~~ \n");
 		Console.WriteLine("Breakfast + total breakfast calories");
 		
@@ -60,18 +78,38 @@ public class Program
 		Console.WriteLine("Water: " + totalwaterIntake);
 		
 		Console.WriteLine("Back to Main Menu [M]");
+		menuSelection = Convert.ToChar(Console.ReadLine());
+		
+		if (menuSelection == 'M')
+		{ goto MAINMENU; }
 		
 		// CALORIES
+		
+		CALORIES:
+		
 		Console.WriteLine("~~~~~~~~~~ Calories ~~~~~~~~~~ \n");
 		
 		Console.WriteLine("Add Calories [A]");
 		Console.WriteLine("Delete Calories [D]");
 		Console.WriteLine("Main Menu [M]");
 		Console.WriteLine("What would you like to do?");
+		menuSelection = Convert.ToChar(Console.ReadLine());
 		
 		//whichever character takes user to different part of the loop
 		
+		if (menuSelection == 'A')
+		{ goto ADDCALORIES; }
+		
+		if (menuSelection == 'D')
+		{ goto DELETECALORIES; }
+		
+		if (menuSelection == 'M')
+		{ goto MAINMENU; }
+		
 			// ADD CALORIES
+		
+			ADDCALORIES:
+		
 			Console.WriteLine("~~~~~~~~~~ Add Calories ~~~~~~~~~~ \n");
 
 			Console.WriteLine("Breakfast [B]");
@@ -80,10 +118,29 @@ public class Program
 			Console.WriteLine("Snacks [S]");
 			Console.WriteLine("Back to Calories [C]");
 			Console.WriteLine("Which category would you like to add to?");
+			menuSelection = Convert.ToChar(Console.ReadLine());
 
 			// whichever character takes user to different part of the loop
+		
+			if (menuSelection == 'B')
+			{ goto ADDBREAKFAST; }
+		
+			if (menuSelection == 'L')
+			{ goto ADDLUNCH; }
+		
+			if (menuSelection == 'D')
+			{ goto ADDDINNER; }
+
+			if (menuSelection == 'S')
+			{ goto ADDSNACKS; }
+
+			if (menuSelection == 'C')
+			{ goto CALORIES; }
 
 				// BREAKFAST
+		
+				ADDBREAKFAST:
+		
 				Console.WriteLine("~~~~~~~~~~ Breakfast ~~~~~~~~~~ \n");
 
 				Console.WriteLine("What item would you like to add?: ");
@@ -91,9 +148,20 @@ public class Program
 				Console.WriteLine("How many calories is this item?: ");
 
 				Console.WriteLine("Add another item? [Y/N]: ");
+				doMore = Convert.ToChar(Console.ReadLine());
+		
 				// loop back to breafast if yes, back to add calories if no
+				
+				if (doMore == 'Y')
+				{ goto ADDBREAKFAST; }
+		
+				if (doMore == 'N')
+				{ goto ADDCALORIES; }
 
 				// LUNCH
+		
+				ADDLUNCH:
+		
 				Console.WriteLine("~~~~~~~~~~ Lunch ~~~~~~~~~~ \n");
 
 				Console.WriteLine("What item would you like to add?: ");
@@ -101,9 +169,20 @@ public class Program
 				Console.WriteLine("How many calories is this item?: ");
 
 				Console.WriteLine("Add another item? [Y/N]: ");
+				doMore = Convert.ToChar(Console.ReadLine());
+		
 				// loop back to lunch if yes, back to add calories if no
+				
+				if (doMore == 'Y')
+				{ goto ADDLUNCH; }
+		
+				if (doMore == 'N')
+				{ goto ADDCALORIES; }
 
 				// DINNER
+		
+				ADDDINNER:
+		
 				Console.WriteLine("~~~~~~~~~~ DINNER ~~~~~~~~~~ \n");
 
 				Console.WriteLine("What item would you like to add?: ");
@@ -111,9 +190,20 @@ public class Program
 				Console.WriteLine("How many calories is this item?: ");
 
 				Console.WriteLine("Add another item? [Y/N]: ");
+				doMore = Convert.ToChar(Console.ReadLine());
+		
 				// loop back to dinner if yes, back to add calories if no
+				
+				if (doMore == 'Y')
+				{ goto ADDDINNER; }
+		
+				if (doMore == 'N')
+				{ goto ADDCALORIES; }
 
 				// SNACKS
+		
+				ADDSNACKS:
+				
 				Console.WriteLine("~~~~~~~~~~ Snacks ~~~~~~~~~~ \n");
 
 				Console.WriteLine("What item would you like to add?: ");
@@ -121,9 +211,20 @@ public class Program
 				Console.WriteLine("How many calories is this item?: ");
 
 				Console.WriteLine("Add another item? [Y/N]: ");
+				doMore = Convert.ToChar(Console.ReadLine());
+		
 				// loop back to snacks if yes, back to add calories if no
+				
+				if (doMore == 'Y')
+				{ goto ADDSNACKS; }
+		
+				if (doMore == 'N')
+				{ goto ADDCALORIES; }
 
 			// DELETE CALORIES
+		
+			DELETECALORIES:
+		
 			Console.WriteLine("~~~~~~~~~~ Delete Calories ~~~~~~~~~~ \n");
 
 			Console.WriteLine("Breakfast [B]");
@@ -132,51 +233,128 @@ public class Program
 			Console.WriteLine("Snacks [S]");
 			Console.WriteLine("Back to Calories [C]");
 			Console.WriteLine("Which category would you like to delete from?");
+			menuSelection = Convert.ToChar(Console.ReadLine());
 
 			// whichever character takes user to different part of the loop
+		
+			if (menuSelection == 'B')
+			{ goto DELETEBREAKFAST; }
+		
+			if (menuSelection == 'L')
+			{ goto DELETELUNCH; }
+		
+			if (menuSelection == 'D')
+			{ goto DELETEDINNER; }
+
+			if (menuSelection == 'S')
+			{ goto DELETESNACKS; }
+
+			if (menuSelection == 'C')
+			{ goto CALORIES; }
 
 				// BREAKFAST
+		
+				DELETEBREAKFAST:
+		
 				Console.WriteLine("~~~~~~~~~~ Breakfast ~~~~~~~~~~ \n");
 
 				Console.WriteLine("What item would you like to delete?: ");
 
 				Console.WriteLine("Delete another item? [Y/N]: ");
-				// loop back to breafast if yes, back to delete calories if no
+				doMore = Convert.ToChar(Console.ReadLine());
+		
+				// loop back to breakfast if yes, back to delete calories if no
+				
+				if (doMore == 'Y')
+				{ goto DELETEBREAKFAST; }
+		
+				if (doMore == 'N')
+				{ goto DELETECALORIES; }
 
 				// LUNCH
+		
+				DELETELUNCH:
+		
 				Console.WriteLine("~~~~~~~~~~ Lunch ~~~~~~~~~~ \n");
 
 				Console.WriteLine("What item would you like to delete?: ");
 
 				Console.WriteLine("Delete another item? [Y/N]: ");
+				doMore = Convert.ToChar(Console.ReadLine());
+		
 				// loop back to lunch if yes, back to delete calories if no
+				
+				if (doMore == 'Y')
+				{ goto DELETELUNCH; }
+		
+				if (doMore == 'N')
+				{ goto DELETECALORIES; }
 
 				// DINNER
+		
+				DELETEDINNER:
+		
 				Console.WriteLine("~~~~~~~~~~ DINNER ~~~~~~~~~~ \n");
 
 				Console.WriteLine("What item would you like to delete?: ");
 
 				Console.WriteLine("Delete another item? [Y/N]: ");
+				doMore = Convert.ToChar(Console.ReadLine());
+		
 				// loop back to dinner if yes, back to delete calories if no
+				
+				if (doMore == 'Y')
+				{ goto DELETEDINNER; }
+		
+				if (doMore == 'N')
+				{ goto DELETECALORIES; }
 
 				// SNACKS
+		
+				DELETESNACKS:
+		
 				Console.WriteLine("~~~~~~~~~~ Snacks ~~~~~~~~~~ \n");
 
 				Console.WriteLine("What item would you like to delete?: ");
 
 				Console.WriteLine("Delete another item? [Y/N]: ");
+				doMore = Convert.ToChar(Console.ReadLine());
+		
 				// loop back to snacks if yes, back to delete calories if no
+				
+				if (doMore == 'Y')
+				{ goto DELETESNACKS; }
+		
+				if (doMore == 'N')
+				{ goto DELETECALORIES; }
 		
 		// WATER
+		
+		WATER:
+		
 		Console.WriteLine("~~~~~~~~~~ Water ~~~~~~~~~~ \n");
 		
 		Console.WriteLine("Add Water [A]");
 		Console.WriteLine("Delete Water [D]");
 		Console.WriteLine("Main Menu [M]");
+		Console.WriteLine("Where would you like to go?: ");
+		menuSelection = Convert.ToChar(Console.ReadLine());
+
+			// whichever character takes user to different part of the loop
 		
-		// whichever character takes user to different part of the loop
+			if (menuSelection == 'A')
+			{ goto ADDWATER; }
+		
+			if (menuSelection == 'D')
+			{ goto DELETEWATER; }
+		
+			if (menuSelection == 'M')
+			{ goto MAINMENU; }
 		
 			// ADD WATER
+		
+			ADDWATER:
+		
 			Console.WriteLine("~~~~~~~~~~ Add Water ~~~~~~~~~~ \n");
 
 			Console.WriteLine("How many ounces?: ");
@@ -184,8 +362,12 @@ public class Program
 			totalwaterIntake = totalwaterIntake + addWater;
 
 			//automatically go back to water
+			goto WATER;
 
 			// DELETE WATER
+		
+			DELETEWATER:
+		
 			Console.WriteLine("~~~~~~~~~~ Delete Water ~~~~~~~~~~ \n");
 
 			Console.WriteLine("How many ounces?: ");
@@ -193,46 +375,90 @@ public class Program
 			totalwaterIntake = totalwaterIntake - deleteWater;
 
 			//automatically go back to water
+			goto WATER;
 		
 		// SETTINGS
+		
+		SETTINGS:
+		
 		Console.WriteLine("~~~~~~~~~~ Settings ~~~~~~~~~~ \n");
 		
-		Console.WriteLine("Daily Caloric Intake Goal [C]");
+		Console.WriteLine("Daily Calorie Intake Goal [C]");
 		Console.WriteLine("Daily Water Intake Goal [W]");
 		Console.WriteLine("Username [U]");
 		Console.WriteLine("Main Menu [M}");
 		Console.WriteLine("What would you like to change?: ");
+		menuSelection = Convert.ToChar(Console.ReadLine());
+
+			// whichever character takes user to different part of the loop
 		
-		// whichever character takes user to different part of the loop
+			if (menuSelection == 'C')
+			{ goto DCIG; }
 		
-			// DAILY CALORIC INTAKE GOAL
-			Console.WriteLine("~~~~~~~~~~ Daily Caloric Intake Goal ~~~~~~~~~~ \n");
+			if (menuSelection == 'W')
+			{ goto DWIG; }
+		
+			if (menuSelection == 'U')
+			{ goto USERNAME; }
+
+			if (menuSelection == 'M')
+			{ goto MAINMENU; }
+		
+			// DAILY CALORIE INTAKE GOAL
+		
+			DCIG:
+		
+			Console.WriteLine("~~~~~~~~~~ Daily Calorie Intake Goal ~~~~~~~~~~ \n");
 
 			Console.WriteLine("What is your daily calorie intake goal?: ");
 			dailycalorieGoal = Convert.ToInt16(Console.ReadLine());
 
 			Console.WriteLine("Would you like to change anything else? [Y/N]: ");
+			doMore = Convert.ToChar(Console.ReadLine());
 
 			// loop settings if yes, go back to main menu if no
+			if (doMore == 'Y')
+			{ goto SETTINGS; }
+		
+			if (doMore == 'N')
+			{ goto MAINMENU; }
 
 			// DAILY WATER INTAKE GOAL
+		
+			DWIG:
+		
 			Console.WriteLine("~~~~~~~~~~ Daily Water Intake Goal ~~~~~~~~~~ \n");
 
 			Console.WriteLine("What is your daily water intake goal?: ");
 			dailywaterGoal = Convert.ToInt16(Console.ReadLine());
 
 			Console.WriteLine("Would you like to change anything else? [Y/N]: ");
+			doMore = Convert.ToChar(Console.ReadLine());
 
 			// loop settings if yes, go back to main menu if no
+			if (doMore == 'Y')
+			{ goto SETTINGS; }
+		
+			if (doMore == 'N')
+			{ goto MAINMENU; }
 
 			// USERNAME
+		
+			USERNAME:
+		
 			Console.WriteLine("~~~~~~~~~~ Username ~~~~~~~~~~ \n");
 
 			Console.WriteLine("Please enter your name: ");
 			userName = Console.ReadLine();
 
 			Console.WriteLine("Would you like to change anything else? [Y/N]: ");
+			doMore = Convert.ToChar(Console.ReadLine());
 
 			// loop settings if yes, go back to main menu if no
+			if (doMore == 'Y')
+			{ goto SETTINGS; }
+		
+			if (doMore == 'N')
+			{ goto MAINMENU; }
 	}
 }
