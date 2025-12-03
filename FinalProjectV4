@@ -1,0 +1,642 @@
+/*This is a calorie tracker
+Created: 10/16/25 11:00 a.m.
+Update 1: "Created file" Kirsten on 10/16/25 11:15 a.m.
+Update 2: Kirsten on 11/12/25 8:24 p.m.
+Update 3: "Added text outputs" Kirsten on 11/12/25 9:01 p.m.
+Update 4: "Added text outputs" Kirsten on 11/18/25 8:52 p.m.
+Update 5: "Completed text outputs, added mathematical operations" Kirsten on 11/18/25 9:14 p.m.
+Update 6: "Completed menu navigation" Kirsten on 11/19/25 10:13 p.m.
+Update 7: "Completed mathematical operations" Kirsten on 11/19/25 11:05 p.m.
+Update 8: "Added arrays/lists, loops for items, edit/delete, and date reset" Kaya on 11/25/25.
+Last updated by: Kirsten & Kaya on 11/25/25.
+*/
+
+using System;
+using System.Collections.Generic;
+
+public class Program
+{
+    public static void Main()
+    {
+        // Initialization
+        string userName = "";
+        int dailycalorieGoal = 0, totalcalorieIntake = 0;
+        int dailywaterGoal = 0, totalwaterIntake = 0;
+        int itemCalorie = 0;
+
+        // Meal totals
+        int breakfastCalorie = 0, lunchCalorie = 0, dinnerCalorie = 0, snacksCalorie = 0;
+
+        // Lists (arrays)
+        List<string> breakfastItems = new List<string>();
+        List<int> breakfastCalories = new List<int>();
+
+        List<string> lunchItems = new List<string>();
+        List<int> lunchCalories = new List<int>();
+
+        List<string> dinnerItems = new List<string>();
+        List<int> dinnerCalories = new List<int>();
+
+        List<string> snacksItems = new List<string>();
+        List<int> snacksCalories = new List<int>();
+
+        // Date-tracking
+        DateTime currentDate = DateTime.Today;
+
+        // USER SETUP
+        Console.WriteLine("~~~~~~~~~~ Welcome to K&K Calorie Tracker ~~~~~~~~~~\n");
+        Console.Write("Please enter your name: ");
+        userName = Console.ReadLine();
+
+        Console.Write("Daily calorie goal?: ");
+        dailycalorieGoal = Convert.ToInt16(Console.ReadLine());
+
+        Console.Write("Daily water goal (oz)?: ");
+        dailywaterGoal = Convert.ToInt16(Console.ReadLine());
+
+    MAINMENU:
+
+        // Auto reset on new day
+        if (currentDate.Date != DateTime.Today)
+        {
+            currentDate = DateTime.Today;
+            totalcalorieIntake = totalwaterIntake = 0;
+
+            breakfastCalorie = lunchCalorie = dinnerCalorie = snacksCalorie = 0;
+
+            breakfastItems.Clear(); breakfastCalories.Clear();
+            lunchItems.Clear(); lunchCalories.Clear();
+            dinnerItems.Clear(); dinnerCalories.Clear();
+            snacksItems.Clear(); snacksCalories.Clear();
+
+            Console.WriteLine("\n*** New day detected — data reset ***\n");
+        }
+
+        Console.WriteLine("\n~~~~~~~~~~ K&K Calorie Tracker ~~~~~~~~~~");
+        Console.WriteLine("Date: " + currentDate.ToShortDateString());
+        Console.WriteLine("Welcome " + userName + "!\n");
+
+        Console.WriteLine("Today's Report [R]");
+        Console.WriteLine("Calories      [C]");
+        Console.WriteLine("Water         [W]");
+        Console.WriteLine("Settings      [S]");
+        Console.Write("\nChoose an option: ");
+
+        string mainInput = Console.ReadLine();
+        char mainChoice = Char.ToUpper(mainInput[0]);
+
+        if (mainChoice == 'R') goto TODAYSREPORT;
+        if (mainChoice == 'C') goto CALORIES;
+        if (mainChoice == 'W') goto WATER;
+        if (mainChoice == 'S') goto SETTINGS;
+
+        goto MAINMENU;
+
+    TODAYSREPORT:
+
+        Console.WriteLine("\n~~~~~~~~~~ Today’s Report ~~~~~~~~~~\n");
+
+        // BREAKFAST
+        Console.WriteLine($"Breakfast - {breakfastCalorie} calories total");
+        if (breakfastItems.Count == 0) Console.WriteLine("  (No items)");
+        else
+            for (int i = 0; i < breakfastItems.Count; i++)
+                Console.WriteLine($"  - {breakfastItems[i]} ({breakfastCalories[i]} calories)");
+        Console.WriteLine();
+
+        // LUNCH
+        Console.WriteLine($"Lunch - {lunchCalorie} calories total");
+        if (lunchItems.Count == 0) Console.WriteLine("  (No items)");
+        else
+            for (int i = 0; i < lunchItems.Count; i++)
+                Console.WriteLine($"  - {lunchItems[i]} ({lunchCalories[i]} calories)");
+        Console.WriteLine();
+
+        // DINNER
+        Console.WriteLine($"Dinner - {dinnerCalorie} calories total");
+        if (dinnerItems.Count == 0) Console.WriteLine("  (No items)");
+        else
+            for (int i = 0; i < dinnerItems.Count; i++)
+                Console.WriteLine($"  - {dinnerItems[i]} ({dinnerCalories[i]} calories)");
+        Console.WriteLine();
+
+        // SNACKS
+        Console.WriteLine($"Snacks - {snacksCalorie} calories total");
+        if (snacksItems.Count == 0) Console.WriteLine("  (No items)");
+        else
+            for (int i = 0; i < snacksItems.Count; i++)
+                Console.WriteLine($"  - {snacksItems[i]} ({snacksCalories[i]} calories)");
+        Console.WriteLine();
+
+        // TOTALS
+        Console.WriteLine($"Total Calories: {totalcalorieIntake}/{dailycalorieGoal}");
+        Console.WriteLine($"Water Intake:  {totalwaterIntake}/{dailywaterGoal} oz\n");
+
+        Console.Write("Back to Main Menu [M]: ");
+        string backInput = Console.ReadLine();
+        goto MAINMENU;
+
+    CALORIES:
+
+        Console.WriteLine("\n~~~~~~~~~~ Calories Menu ~~~~~~~~~~");
+        Console.WriteLine("Add Calories   [A]");
+        Console.WriteLine("Delete Item    [D]");
+        Console.WriteLine("Edit Item      [E]");
+        Console.WriteLine("Main Menu      [M]");
+        Console.Write("\nChoose: ");
+
+        string calInput = Console.ReadLine();
+        char calChoice = Char.ToUpper(calInput[0]);
+
+        if (calChoice == 'A') goto ADDCALORIES;
+        if (calChoice == 'D') goto DELETECALORIES;
+        if (calChoice == 'E') goto EDITCALORIES;
+        if (calChoice == 'M') goto MAINMENU;
+
+        goto CALORIES;
+
+    ADDCALORIES:
+
+        Console.WriteLine("\nAdd to which meal?");
+        Console.WriteLine("Breakfast [B]");
+        Console.WriteLine("Lunch     [L]");
+        Console.WriteLine("Dinner    [D]");
+        Console.WriteLine("Snacks    [S]");
+        Console.WriteLine("Back      [C]");
+        Console.Write("Choose: ");
+
+        string addCat = Console.ReadLine();
+        char addChoice = Char.ToUpper(addCat[0]);
+
+        if (addChoice == 'B') goto ADDBREAKFAST;
+        if (addChoice == 'L') goto ADDLUNCH;
+        if (addChoice == 'D') goto ADDDINNER;
+        if (addChoice == 'S') goto ADDSNACKS;
+        if (addChoice == 'C') goto CALORIES;
+
+        goto ADDCALORIES;
+
+    // ===== ADD BREAKFAST =====
+    ADDBREAKFAST:
+
+        Console.Write("\nItem name: ");
+        string bName = Console.ReadLine();
+
+        Console.Write("Calories: ");
+        itemCalorie = Convert.ToInt16(Console.ReadLine());
+
+        breakfastItems.Add(bName);
+        breakfastCalories.Add(itemCalorie);
+
+        breakfastCalorie += itemCalorie;
+        totalcalorieIntake += itemCalorie;
+
+        Console.Write("Add another? [Y/N]: ");
+        string moreB = Console.ReadLine();
+        if (Char.ToUpper(moreB[0]) == 'Y') goto ADDBREAKFAST;
+
+        goto ADDCALORIES;
+
+    // ===== ADD LUNCH =====
+    ADDLUNCH:
+
+        Console.Write("\nItem name: ");
+        string lName = Console.ReadLine();
+
+        Console.Write("Calories: ");
+        itemCalorie = Convert.ToInt16(Console.ReadLine());
+
+        lunchItems.Add(lName);
+        lunchCalories.Add(itemCalorie);
+
+        lunchCalorie += itemCalorie;
+        totalcalorieIntake += itemCalorie;
+
+        Console.Write("Add another? [Y/N]: ");
+        string moreL = Console.ReadLine();
+        if (Char.ToUpper(moreL[0]) == 'Y') goto ADDLUNCH;
+
+        goto ADDCALORIES;
+
+    // ===== ADD DINNER =====
+    ADDDINNER:
+
+        Console.Write("\nItem name: ");
+        string dName = Console.ReadLine();
+
+        Console.Write("Calories: ");
+        itemCalorie = Convert.ToInt16(Console.ReadLine());
+
+        dinnerItems.Add(dName);
+        dinnerCalories.Add(itemCalorie);
+
+        dinnerCalorie += itemCalorie;
+        totalcalorieIntake += itemCalorie;
+
+        Console.Write("Add another? [Y/N]: ");
+        string moreD = Console.ReadLine();
+        if (Char.ToUpper(moreD[0]) == 'Y') goto ADDDINNER;
+
+        goto ADDCALORIES;
+
+    // ===== ADD SNACKS =====
+    ADDSNACKS:
+
+        Console.Write("\nItem name: ");
+        string sName = Console.ReadLine();
+
+        Console.Write("Calories: ");
+        itemCalorie = Convert.ToInt16(Console.ReadLine());
+
+        snacksItems.Add(sName);
+        snacksCalories.Add(itemCalorie);
+
+        snacksCalorie += itemCalorie;
+        totalcalorieIntake += itemCalorie;
+
+        Console.Write("Add another? [Y/N]: ");
+        string moreS = Console.ReadLine();
+        if (Char.ToUpper(moreS[0]) == 'Y') goto ADDSNACKS;
+
+        goto ADDCALORIES;
+
+    // ===== DELETE MENU =====
+    DELETECALORIES:
+
+        Console.WriteLine("\nDelete from which meal?");
+        Console.WriteLine("Breakfast [B]");
+        Console.WriteLine("Lunch     [L]");
+        Console.WriteLine("Dinner    [D]");
+        Console.WriteLine("Snacks    [S]");
+        Console.WriteLine("Back      [C]");
+        Console.Write("Choose: ");
+
+        string delCat = Console.ReadLine();
+        char delChoice = Char.ToUpper(delCat[0]);
+
+        if (delChoice == 'B') goto DELETEBREAKFAST;
+        if (delChoice == 'L') goto DELETELUNCH;
+        if (delChoice == 'D') goto DELETEDINNER;
+        if (delChoice == 'S') goto DELETESNACKS;
+        if (delChoice == 'C') goto CALORIES;
+
+        goto DELETECALORIES;
+
+    // ===== DELETE BREAKFAST =====
+    DELETEBREAKFAST:
+
+        if (breakfastItems.Count == 0)
+        {
+            Console.WriteLine("\nNo breakfast items to delete.");
+            goto DELETECALORIES;
+        }
+
+        Console.WriteLine("\nChoose an item to delete:");
+        for (int i = 0; i < breakfastItems.Count; i++)
+            Console.WriteLine($"{i + 1}. {breakfastItems[i]} ({breakfastCalories[i]} cal)");
+
+        int delB = Convert.ToInt16(Console.ReadLine()) - 1;
+
+        if (delB >= 0 && delB < breakfastItems.Count)
+        {
+            totalcalorieIntake -= breakfastCalories[delB];
+            breakfastCalorie -= breakfastCalories[delB];
+
+            breakfastItems.RemoveAt(delB);
+            breakfastCalories.RemoveAt(delB);
+        }
+
+        goto DELETECALORIES;
+
+    // ===== DELETE LUNCH =====
+    DELETELUNCH:
+
+        if (lunchItems.Count == 0)
+        {
+            Console.WriteLine("\nNo lunch items to delete.");
+            goto DELETECALORIES;
+        }
+
+        Console.WriteLine("\nChoose an item to delete:");
+        for (int i = 0; i < lunchItems.Count; i++)
+            Console.WriteLine($"{i + 1}. {lunchItems[i]} ({lunchCalories[i]} cal)");
+
+        int delL = Convert.ToInt16(Console.ReadLine()) - 1;
+
+        if (delL >= 0 && delL < lunchItems.Count)
+        {
+            totalcalorieIntake -= lunchCalories[delL];
+            lunchCalorie -= lunchCalories[delL];
+
+            lunchItems.RemoveAt(delL);
+            lunchCalories.RemoveAt(delL);
+        }
+
+        goto DELETECALORIES;
+
+    // ===== DELETE DINNER =====
+    DELETEDINNER:
+
+        if (dinnerItems.Count == 0)
+        {
+            Console.WriteLine("\nNo dinner items to delete.");
+            goto DELETECALORIES;
+        }
+
+        Console.WriteLine("\nChoose an item to delete:");
+        for (int i = 0; i < dinnerItems.Count; i++)
+            Console.WriteLine($"{i + 1}. {dinnerItems[i]} ({dinnerCalories[i]} cal)");
+
+        int delD = Convert.ToInt16(Console.ReadLine()) - 1;
+
+        if (delD >= 0 && delD < dinnerItems.Count)
+        {
+            totalcalorieIntake -= dinnerCalories[delD];
+            dinnerCalorie -= dinnerCalories[delD];
+
+            dinnerItems.RemoveAt(delD);
+            dinnerCalories.RemoveAt(delD);
+        }
+
+        goto DELETECALORIES;
+
+    // ===== DELETE SNACKS =====
+    DELETESNACKS:
+
+        if (snacksItems.Count == 0)
+        {
+            Console.WriteLine("\nNo snack items to delete.");
+            goto DELETECALORIES;
+        }
+
+        Console.WriteLine("\nChoose an item to delete:");
+        for (int i = 0; i < snacksItems.Count; i++)
+            Console.WriteLine($"{i + 1}. {snacksItems[i]} ({snacksCalories[i]} cal)");
+
+        int delS = Convert.ToInt16(Console.ReadLine()) - 1;
+
+        if (delS >= 0 && delS < snacksItems.Count)
+        {
+            totalcalorieIntake -= snacksCalories[delS];
+            snacksCalorie -= snacksCalories[delS];
+
+            snacksItems.RemoveAt(delS);
+            snacksCalories.RemoveAt(delS);
+        }
+
+        goto DELETECALORIES;
+
+    // ===== EDIT MENU =====
+    EDITCALORIES:
+
+        Console.WriteLine("\nEdit which meal?");
+        Console.WriteLine("Breakfast [B]");
+        Console.WriteLine("Lunch     [L]");
+        Console.WriteLine("Dinner    [D]");
+        Console.WriteLine("Snacks    [S]");
+        Console.WriteLine("Back      [C]");
+        Console.Write("Choose: ");
+
+        string editCat = Console.ReadLine();
+        char eChoice = Char.ToUpper(editCat[0]);
+
+        if (eChoice == 'B') goto EDITBREAKFAST;
+        if (eChoice == 'L') goto EDITLUNCH;
+        if (eChoice == 'D') goto EDITDINNER;
+        if (eChoice == 'S') goto EDITSNACKS;
+        if (eChoice == 'C') goto CALORIES;
+
+        goto EDITCALORIES;
+
+    // ===== EDIT BREAKFAST =====
+    EDITBREAKFAST:
+
+        if (breakfastItems.Count == 0)
+        {
+            Console.WriteLine("\nNo breakfast items to edit.");
+            goto EDITCALORIES;
+        }
+
+        Console.WriteLine("\nSelect an item to edit:");
+        for (int i = 0; i < breakfastItems.Count; i++)
+            Console.WriteLine($"{i + 1}. {breakfastItems[i]} ({breakfastCalories[i]} cal)");
+
+        int editB = Convert.ToInt16(Console.ReadLine()) - 1;
+
+        Console.WriteLine("\nEdit Name [N] or Calories [C]?");
+        char editTypeB = Char.ToUpper(Console.ReadLine()[0]);
+
+        if (editTypeB == 'N')
+        {
+            Console.Write("New name: ");
+            breakfastItems[editB] = Console.ReadLine();
+        }
+        else if (editTypeB == 'C')
+        {
+            Console.Write("New calorie amount: ");
+            int old = breakfastCalories[editB];
+            int newC = Convert.ToInt16(Console.ReadLine());
+
+            totalcalorieIntake -= old;
+            breakfastCalorie -= old;
+
+            breakfastCalories[editB] = newC;
+
+            totalcalorieIntake += newC;
+            breakfastCalorie += newC;
+        }
+
+        goto EDITCALORIES;
+
+    // ===== EDIT LUNCH =====
+    EDITLUNCH:
+
+        if (lunchItems.Count == 0)
+        {
+            Console.WriteLine("\nNo lunch items to edit.");
+            goto EDITCALORIES;
+        }
+
+        Console.WriteLine("\nSelect an item to edit:");
+        for (int i = 0; i < lunchItems.Count; i++)
+            Console.WriteLine($"{i + 1}. {lunchItems[i]} ({lunchCalories[i]} cal)");
+
+        int editL = Convert.ToInt16(Console.ReadLine()) - 1;
+
+        Console.WriteLine("\nEdit Name [N] or Calories [C]?");
+        char editTypeL = Char.ToUpper(Console.ReadLine()[0]);
+
+        if (editTypeL == 'N')
+        {
+            Console.Write("New name: ");
+            lunchItems[editL] = Console.ReadLine();
+        }
+        else if (editTypeL == 'C')
+        {
+            Console.Write("New calorie amount: ");
+            int old = lunchCalories[editL];
+            int newC = Convert.ToInt16(Console.ReadLine());
+
+            totalcalorieIntake -= old;
+            lunchCalorie -= old;
+
+            lunchCalories[editL] = newC;
+
+            totalcalorieIntake += newC;
+            lunchCalorie += newC;
+        }
+
+        goto EDITCALORIES;
+
+    // ===== EDIT DINNER =====
+    EDITDINNER:
+
+        if (dinnerItems.Count == 0)
+        {
+            Console.WriteLine("\nNo dinner items to edit.");
+            goto EDITCALORIES;
+        }
+
+        Console.WriteLine("\nSelect an item to edit:");
+        for (int i = 0; i < dinnerItems.Count; i++)
+            Console.WriteLine($"{i + 1}. {dinnerItems[i]} ({dinnerCalories[i]} cal)");
+
+        int editD = Convert.ToInt16(Console.ReadLine()) - 1;
+
+        Console.WriteLine("\nEdit Name [N] or Calories [C]?");
+        char editTypeD = Char.ToUpper(Console.ReadLine()[0]);
+
+        if (editTypeD == 'N')
+        {
+            Console.Write("New name: ");
+            dinnerItems[editD] = Console.ReadLine();
+        }
+        else if (editTypeD == 'C')
+        {
+            Console.Write("New calorie amount: ");
+            int old = dinnerCalories[editD];
+            int newC = Convert.ToInt16(Console.ReadLine());
+
+            totalcalorieIntake -= old;
+            dinnerCalorie -= old;
+
+            dinnerCalories[editD] = newC;
+
+            totalcalorieIntake += newC;
+            dinnerCalorie += newC;
+        }
+
+        goto EDITCALORIES;
+
+    // ===== EDIT SNACKS =====
+    EDITSNACKS:
+
+        if (snacksItems.Count == 0)
+        {
+            Console.WriteLine("\nNo snacks to edit.");
+            goto EDITCALORIES;
+        }
+
+        Console.WriteLine("\nSelect an item to edit:");
+        for (int i = 0; i < snacksItems.Count; i++)
+            Console.WriteLine($"{i + 1}. {snacksItems[i]} ({snacksCalories[i]} cal)");
+
+        int editS = Convert.ToInt16(Console.ReadLine()) - 1;
+
+        Console.WriteLine("\nEdit Name [N] or Calories [C]?");
+        char editTypeS = Char.ToUpper(Console.ReadLine()[0]);
+
+        if (editTypeS == 'N')
+        {
+            Console.Write("New name: ");
+            snacksItems[editS] = Console.ReadLine();
+        }
+        else if (editTypeS == 'C')
+        {
+            Console.Write("New calorie amount: ");
+            int old = snacksCalories[editS];
+            int newC = Convert.ToInt16(Console.ReadLine());
+
+            totalcalorieIntake -= old;
+            snacksCalorie -= old;
+
+            snacksCalories[editS] = newC;
+
+            totalcalorieIntake += newC;
+            snacksCalorie += newC;
+        }
+
+        goto EDITCALORIES;
+
+    // ========= WATER MENU =========
+    WATER:
+
+        Console.WriteLine("\n~~~~~~~~~~ Water Menu ~~~~~~~~~~");
+        Console.WriteLine("Add Water    [A]");
+        Console.WriteLine("Delete Water [D]");
+        Console.WriteLine("Main Menu    [M]");
+        Console.Write("\nChoose: ");
+
+        string waterInput = Console.ReadLine();
+        char waterChoice = Char.ToUpper(waterInput[0]);
+
+        if (waterChoice == 'A') goto ADDWATER;
+        if (waterChoice == 'D') goto DELETEWATER;
+        if (waterChoice == 'M') goto MAINMENU;
+
+        goto WATER;
+
+    ADDWATER:
+
+        Console.Write("\nHow many ounces?: ");
+        int aW = Convert.ToInt16(Console.ReadLine());
+        totalwaterIntake += aW;
+
+        goto WATER;
+
+    DELETEWATER:
+
+        Console.Write("\nHow many ounces to remove?: ");
+        int dW = Convert.ToInt16(Console.ReadLine());
+        totalwaterIntake -= dW;
+        if (totalwaterIntake < 0) totalwaterIntake = 0;
+
+        goto WATER;
+
+    // ========= SETTINGS MENU =========
+    SETTINGS:
+
+        Console.WriteLine("\n~~~~~~~~~~ Settings ~~~~~~~~~~");
+        Console.WriteLine("Change Calorie Goal [C]");
+        Console.WriteLine("Change Water Goal   [W]");
+        Console.WriteLine("Change Username     [U]");
+        Console.WriteLine("Main Menu           [M]");
+        Console.Write("\nChoose: ");
+
+        string settingsInput = Console.ReadLine();
+        char settingsChoice = Char.ToUpper(settingsInput[0]);
+
+        if (settingsChoice == 'C') goto DCIG;
+        if (settingsChoice == 'W') goto DWIG;
+        if (settingsChoice == 'U') goto USERNAME;
+        if (settingsChoice == 'M') goto MAINMENU;
+
+        goto SETTINGS;
+
+    DCIG:
+        Console.Write("\nNew daily calorie goal: ");
+        dailycalorieGoal = Convert.ToInt16(Console.ReadLine());
+        goto SETTINGS;
+
+    DWIG:
+        Console.Write("\nNew daily water goal (oz): ");
+        dailywaterGoal = Convert.ToInt16(Console.ReadLine());
+        goto SETTINGS;
+
+    USERNAME:
+        Console.Write("\nEnter new username: ");
+        userName = Console.ReadLine();
+        goto SETTINGS;
+
+    }
+}
